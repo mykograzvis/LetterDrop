@@ -1851,7 +1851,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1854708033}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0}
+  m_LocalPosition: {x: -0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1871,6 +1871,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937fdf90443051245870640802861951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stepDelay: 1
+  lockDelay: 0.5
 --- !u!114 &1854708037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1888,4 +1890,5 @@ MonoBehaviour:
     tile: {fileID: 11400000, guid: 8ecaa928d4ab5db48a4075fa236e6374, type: 2}
   - letter: 1
     tile: {fileID: 11400000, guid: 7bea608a7ab86bf4985a2287084cd251, type: 2}
-  spawnPosition: {x: -1, y: 9, z: 0}
+  spawnPosition: {x: 0, y: 9, z: 0}
+  boardSize: {x: 11, y: 20}
