@@ -14,6 +14,7 @@ public class Board : MonoBehaviour
     //apsibreziam boardo dydi
     public Vector2Int boardSize = new Vector2Int(11, 20);
 
+    private bool wasVowel = false;
     //apsibreziam boardo ribas kordinatemis zaidimo
     public RectInt Bounds
     {
@@ -45,8 +46,18 @@ public class Board : MonoBehaviour
     //ant lentos ima ir atspawnina kaladele
     public void SpawnPiece()
     {
-        int random = Random.Range(0, this.tiles.Length);
-        TileData data = this.tiles[random];
+        TileData data;
+        // raides renka alternuojant balse-priebalse (veliau sugalvosiu kazka geresnio)
+        if (!wasVowel)
+        {
+            data = this.tiles[Random.Range(0, 5)]; // balses yra siame intervale
+            wasVowel = true;
+        }
+        else
+        {
+            data = this.tiles[Random.Range(6, 25)]; // priebalses yra siame intervale
+            wasVowel = false;
+        }
 
         this.activePiece.Initialize(this, this.spawnPosition, data);
         Set(this.activePiece);
