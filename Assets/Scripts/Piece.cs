@@ -8,7 +8,7 @@ public class Piece : MonoBehaviour
     public Vector3Int position { get; private set; }
     public Vector3Int[] cells { get; private set; }
 
-    public float stepDelay = 1f;
+    public float stepDelay = 0.5f;
     public float lockDelay = 0.5f;
 
     private float stepTime;
@@ -61,6 +61,11 @@ public class Piece : MonoBehaviour
             HardDrop();
         }
 
+        if (Time.time >= this.stepTime)
+        {   
+            Step();
+        }
+
         this.board.Set(this);
     }
 
@@ -106,6 +111,7 @@ public class Piece : MonoBehaviour
         if (validPosition)
         {
             this.position = newPosition;
+            this.lockTime = 0f;
         }
 
         return validPosition;
