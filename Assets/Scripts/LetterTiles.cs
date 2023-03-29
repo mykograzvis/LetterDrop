@@ -5,7 +5,6 @@ public enum Letter
 {
     A,
     B,
-    /*
     C,
     D,
     E,
@@ -30,7 +29,6 @@ public enum Letter
     V,
     Y,
     Z,
-    */
 }
 
 [System.Serializable]
@@ -38,11 +36,11 @@ public struct TileData
 {
     public Letter letter;
     public Tile tile;
-    public Vector2Int[] cells {get; private set; }
-
-    //priskiria kordinates kaladelem ir 2d figuras padaro
+    public Vector2Int[] cells { get; private set; }
+    //priskiria kordinates ir raides kaladelem ir 2d figuras padaro
     public void Initialize()
     {
         this.cells = Data.Cells[this.letter];
+        this.tile.name = this.letter.ToString();
     }
 }
