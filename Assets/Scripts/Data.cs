@@ -7,7 +7,7 @@ public static class Data
     {
         {Letter.A, new Vector2Int[] {new Vector2Int(0, 0)}},
         {Letter.B, new Vector2Int[] {new Vector2Int(0, 0)}},
-        /*
+        
         {Letter.C, new Vector2Int[] {new Vector2Int(0, 0)}},
         {Letter.D, new Vector2Int[] {new Vector2Int(0, 0)}},
         {Letter.E, new Vector2Int[] {new Vector2Int(0, 0)}},
@@ -32,6 +32,6 @@ public static class Data
         {Letter.V, new Vector2Int[] {new Vector2Int(0, 0)}},
         {Letter.Y, new Vector2Int[] {new Vector2Int(0, 0)}},
         {Letter.Z, new Vector2Int[] {new Vector2Int(0, 0)}},
-        */
+        
     };
 }
