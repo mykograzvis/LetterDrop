@@ -1904,35 +1904,35 @@ MonoBehaviour:
   tiles:
   - letter: 0
     tile: {fileID: 11400000, guid: 8b6e795ed83c3bf40ac2892f77a2251c, type: 2}
-  - letter: 4
-    tile: {fileID: 11400000, guid: de78b7d8448cf034aa0b0c61af7b146f, type: 2}
-  - letter: 8
-    tile: {fileID: 11400000, guid: 7b30130b165ba744c83175ec3346fc82, type: 2}
-  - letter: 14
-    tile: {fileID: 11400000, guid: ab980de2441bd2c4d940af1d427f18db, type: 2}
-  - letter: 20
-    tile: {fileID: 11400000, guid: cdc710f52f5aa73419916dc90ad71973, type: 2}
   - letter: 1
-    tile: {fileID: 11400000, guid: 8ecaa928d4ab5db48a4075fa236e6374, type: 2}
+    tile: {fileID: 11400000, guid: de78b7d8448cf034aa0b0c61af7b146f, type: 2}
   - letter: 2
-    tile: {fileID: 11400000, guid: c3084248675b00a4ca7271265d4e3944, type: 2}
+    tile: {fileID: 11400000, guid: 7b30130b165ba744c83175ec3346fc82, type: 2}
   - letter: 3
-    tile: {fileID: 11400000, guid: b373d0ad17cb0d3479f3e6314f459f1a, type: 2}
+    tile: {fileID: 11400000, guid: ab980de2441bd2c4d940af1d427f18db, type: 2}
+  - letter: 4
+    tile: {fileID: 11400000, guid: cdc710f52f5aa73419916dc90ad71973, type: 2}
   - letter: 5
-    tile: {fileID: 11400000, guid: d0e625b9aa2b9eb488fe3124151079a4, type: 2}
+    tile: {fileID: 11400000, guid: 8ecaa928d4ab5db48a4075fa236e6374, type: 2}
   - letter: 6
-    tile: {fileID: 11400000, guid: 57bc86e161208c74b9fd1e209e30e8ab, type: 2}
+    tile: {fileID: 11400000, guid: c3084248675b00a4ca7271265d4e3944, type: 2}
   - letter: 7
-    tile: {fileID: 11400000, guid: 36bfe16e2dfee0140b3ba4b87a32c9a6, type: 2}
+    tile: {fileID: 11400000, guid: b373d0ad17cb0d3479f3e6314f459f1a, type: 2}
+  - letter: 8
+    tile: {fileID: 11400000, guid: d0e625b9aa2b9eb488fe3124151079a4, type: 2}
   - letter: 9
-    tile: {fileID: 11400000, guid: 09908e855f0558f489d4217e300dd1c3, type: 2}
+    tile: {fileID: 11400000, guid: 57bc86e161208c74b9fd1e209e30e8ab, type: 2}
   - letter: 10
-    tile: {fileID: 11400000, guid: 29d6621f024030d418ed43c0bda9c94b, type: 2}
+    tile: {fileID: 11400000, guid: 36bfe16e2dfee0140b3ba4b87a32c9a6, type: 2}
   - letter: 11
-    tile: {fileID: 11400000, guid: 7a29f8d92df408441bda2b6674b829f3, type: 2}
+    tile: {fileID: 11400000, guid: 09908e855f0558f489d4217e300dd1c3, type: 2}
   - letter: 12
-    tile: {fileID: 11400000, guid: 770aa06b1178f814dbf41be996deae82, type: 2}
+    tile: {fileID: 11400000, guid: 29d6621f024030d418ed43c0bda9c94b, type: 2}
   - letter: 13
+    tile: {fileID: 11400000, guid: 7a29f8d92df408441bda2b6674b829f3, type: 2}
+  - letter: 14
+    tile: {fileID: 11400000, guid: 770aa06b1178f814dbf41be996deae82, type: 2}
+  - letter: 15
     tile: {fileID: 11400000, guid: 0582270233c3549428a7e4a48115fee3, type: 2}
   - letter: 16
     tile: {fileID: 11400000, guid: 8d0cb4593b7d56f488c2306245331fb1, type: 2}
@@ -1942,13 +1942,17 @@ MonoBehaviour:
     tile: {fileID: 11400000, guid: 3a74227e28510fd4db5c280b8d449063, type: 2}
   - letter: 19
     tile: {fileID: 11400000, guid: 6948daaef5de54a4fbb2e7fef8e88b5e, type: 2}
-  - letter: 21
+  - letter: 20
     tile: {fileID: 11400000, guid: 1a4c111607ebaf54d85a64fefb8cc8d6, type: 2}
-  - letter: 22
+  - letter: 21
     tile: {fileID: 11400000, guid: af1865845c27ca046a3aaf3378de6511, type: 2}
-  - letter: 23
+  - letter: 22
     tile: {fileID: 11400000, guid: 7fd1a9fd268e1dd4d9ce9474361e517f, type: 2}
+  - letter: 23
+    tile: {fileID: 11400000, guid: c38cd3542071d9c4c814d658f0cac582, type: 2}
   - letter: 24
+    tile: {fileID: 11400000, guid: c38cd3542071d9c4c814d658f0cac582, type: 2}
+  - letter: 25
     tile: {fileID: 11400000, guid: c38cd3542071d9c4c814d658f0cac582, type: 2}
   spawnPosition: {x: 0, y: 9, z: 0}
   boardSize: {x: 11, y: 20}
