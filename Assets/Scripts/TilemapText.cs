@@ -32,7 +32,7 @@ public class TilemapText : MonoBehaviour
                 TileBase tile = tilemap.GetTile(pos);
                 if (tile != null) // patikrinam, ar laukelis ne tuscias
                 {
-                    Debug.Log("Tile: " + tile.name + " at: " + pos);
+                    //Debug.Log("Tile: " + tile.name + " at: " + pos);
                     textGO = new GameObject("Tile Text"); // kuriam GameObject kuris rodys teksta (raide)
                     textGO.transform.position = tilemap.GetCellCenterWorld(pos);
                     textGO.transform.parent = tilemap.transform;
