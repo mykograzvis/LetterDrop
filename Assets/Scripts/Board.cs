@@ -7,6 +7,7 @@ using System.IO;
 
 public class Board : MonoBehaviour
 {
+    [SerializeField] private AudioSource scoreSoundEffect;
     //kaladeliu masyvas
     public TileData[] tiles;
     //zemelapis
@@ -76,8 +77,9 @@ public class Board : MonoBehaviour
 
     //funkcija skirta istrinti zodi, kuri rado finder objektas
     public void ClearWord()
-    {   
-        for(int i = 0; i < finder.positions.Count; i++)
+    {
+        scoreSoundEffect.Play();
+        for (int i = 0; i < finder.positions.Count; i++)
         {
             this.tilemap.SetTile(finder.positions[i], null);
         }
