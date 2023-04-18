@@ -64,6 +64,7 @@ public class Board : MonoBehaviour
             // pagal koordinates istrinam zodi ir vykdom kaladeliu perstumimus
             // trinamo zodzio koordinates saugomos "finder.positions" liste (manau tai pravers darant trynima)
             ClearWord();
+            LetterGravity();
         }
 
         int index = WordLetters.GetWordLetter();
@@ -79,6 +80,31 @@ public class Board : MonoBehaviour
         for(int i = 0; i < finder.positions.Count; i++)
         {
             this.tilemap.SetTile(finder.positions[i], null);
+        }
+    }
+
+    //funkcija kuri padaro, kad nukristu raides, po kuriu buvo istrintas zodis
+    public void LetterGravity()
+    {    
+        for(int i = 0; i < finder.positions.Count; i++)
+        {
+            Vector3Int tileposition = finder.positions[i];
+            Vector3Int above = tileposition;
+            above.y += 1;
+            //checkinam ar virs esamo tile nera bloko
+            if(tilemap.HasTile(above))
+            {
+                var position = tileposition;
+                //ziurim visus virsutinius tile ir paslenkam per viena
+                while(tilemap.HasTile(above))
+                {
+                    var tile = tilemap.GetTile(above);
+                    tilemap.SetTile(position, tile);
+                    tilemap.SetTile(above, null);
+                    above.y += 1;
+                    position.y += 1;
+                }
+            }
         }
     }
 
