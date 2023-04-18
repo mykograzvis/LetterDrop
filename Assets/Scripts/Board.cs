@@ -1,5 +1,9 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 
 public class Board : MonoBehaviour
 {
@@ -13,7 +17,10 @@ public class Board : MonoBehaviour
     public Vector3Int spawnPosition;
     //apsibreziam boardo dydi
     public Vector2Int boardSize = new Vector2Int(11, 20);
-
+    //zodziu kuriuos printinti klase
+    public Printer WordLetters = new Printer();
+    // Tikrins ar boarde yra sudetu zodziu
+    public WordFind finder;
     //apsibreziam boardo ribas kordinatemis zaidimo
     public RectInt Bounds
     {
@@ -34,6 +41,11 @@ public class Board : MonoBehaviour
         {
             this.tiles[i].Initialize();
         }
+
+        this.WordLetters = new Printer();
+
+        finder = new WordFind();
+        finder.Create(tilemap); // Sukuriamas zodynas (reik sukurt tik viena kart)
     }
 
     //game start ka daryt
@@ -45,8 +57,16 @@ public class Board : MonoBehaviour
     //ant lentos ima ir atspawnina kaladele
     public void SpawnPiece()
     {
-        int random = Random.Range(0, this.tiles.Length);
-        TileData data = this.tiles[random];
+        // pries atspawninant kaladele, tikrinam ar yra sudarytas zodis. Jei taip, reikia ji istrinti
+        string word = finder.FindWord();
+        if (word != "") // rastas zodis
+        {
+            // pagal koordinates istrinam zodi ir vykdom kaladeliu perstumimus
+            // trinamo zodzio koordinates saugomos "finder.positions" liste (manau tai pravers darant trynima)
+        }
+
+        int index = WordLetters.GetWordLetter();
+        TileData data = this.tiles[index];
 
         this.activePiece.Initialize(this, this.spawnPosition, data);
         Set(this.activePiece);
@@ -97,3 +117,4 @@ public class Board : MonoBehaviour
         return true;
     }
 }
+

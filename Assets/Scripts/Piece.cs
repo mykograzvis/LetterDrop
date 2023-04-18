@@ -3,21 +3,26 @@ using UnityEngine;
 //objektas kaladeles
 public class Piece : MonoBehaviour
 {
-    public Board board {get; private set; }
-    public TileData data {get; private set; }
-    public Vector3Int position {get; private set; }
-    public Vector3Int[] cells {get; private set; }
+    public Board board { get; private set; }
+    public TileData data { get; private set; }
+    public Vector3Int position { get; private set; }
+    public Vector3Int[] cells { get; private set; }
 
-    public float stepDelay = 1f;
+    public float stepDelay = 0.5f;
     public float lockDelay = 0.5f;
+
+    private float stepTime;
+    private float lockTime;
 
     public void Initialize(Board board, Vector3Int position, TileData data)
     {
         this.board = board;
         this.data = data;
         this.position = position;
+        this.stepTime = Time.time + stepDelay;
+        this.lockTime = 0f;
 
-        if(this.cells == null)
+        if (this.cells == null)
         {
             this.cells = new Vector3Int[data.cells.Length];
         }
@@ -33,26 +38,32 @@ public class Piece : MonoBehaviour
     {
         this.board.Clear(this);
 
+        this.lockTime += Time.deltaTime;
         //judejimas i sonus
-        if(Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             Move(Vector2Int.left);
         }
-        else if(Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             Move(Vector2Int.right);
         }
 
         //judejimas zemyn
-        if(Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             Move(Vector2Int.down);
         }
 
         //iskart slamina zemyn
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             HardDrop();
+        }
+
+        if (Time.time >= this.stepTime)
+        {   
+            Step();
         }
 
         this.board.Set(this);
@@ -60,10 +71,30 @@ public class Piece : MonoBehaviour
 
     private void HardDrop()
     {
-        while(Move(Vector2Int.down))
+        while (Move(Vector2Int.down))
         {
             continue;
         }
+
+        Lock();
+    }
+
+    private void Step()
+    {
+        this.stepTime = Time.time + this.stepDelay;
+
+        Move(Vector2Int.down);
+
+        if (this.lockTime >= this.lockDelay)
+        {
+            Lock();
+        }
+    }
+
+    private void Lock()
+    {
+        this.board.Set(this);
+        this.board.SpawnPiece();
     }
 
     //funkcija pajudint kur update naudoja ^
@@ -77,9 +108,10 @@ public class Piece : MonoBehaviour
         bool validPosition = this.board.IsValidPosition(this, newPosition);
 
         //
-        if(validPosition)
+        if (validPosition)
         {
             this.position = newPosition;
+            this.lockTime = 0f;
         }
 
         return validPosition;
