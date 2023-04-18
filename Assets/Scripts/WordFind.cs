@@ -53,6 +53,7 @@ public class WordFind
                 {
                     Debug.Log("Found word: " + word);
                     positions = GetWordPositions(line, word, positions);
+                    ScoreScript.scoreValue += (100 * Math.Pow(1.5, word.Length - 3));
                     return word;
                 }
             }
