@@ -1,5 +1,9 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 
 public class Board : MonoBehaviour
 {
@@ -13,8 +17,10 @@ public class Board : MonoBehaviour
     public Vector3Int spawnPosition;
     //apsibreziam boardo dydi
     public Vector2Int boardSize = new Vector2Int(11, 20);
-
-    private bool wasVowel = false;
+    //zodziu kuriuos printinti klase
+    public Printer WordLetters = new Printer();
+    // Tikrins ar boarde yra sudetu zodziu
+    public WordFind finder;
     //apsibreziam boardo ribas kordinatemis zaidimo
     public RectInt Bounds
     {
@@ -35,6 +41,11 @@ public class Board : MonoBehaviour
         {
             this.tiles[i].Initialize();
         }
+
+        this.WordLetters = new Printer();
+
+        finder = new WordFind();
+        finder.Create(tilemap); // Sukuriamas zodynas (reik sukurt tik viena kart)
     }
 
     //game start ka daryt
@@ -46,21 +57,55 @@ public class Board : MonoBehaviour
     //ant lentos ima ir atspawnina kaladele
     public void SpawnPiece()
     {
-        TileData data;
-        // raides renka alternuojant balse-priebalse (veliau sugalvosiu kazka geresnio)
-        if (!wasVowel)
+        // pries atspawninant kaladele, tikrinam ar yra sudarytas zodis. Jei taip, reikia ji istrinti
+        string word = finder.FindWord();
+        if (word != "") // rastas zodis
         {
-            data = this.tiles[Random.Range(0, 5)]; // balses yra siame intervale
-            wasVowel = true;
+            // pagal koordinates istrinam zodi ir vykdom kaladeliu perstumimus
+            // trinamo zodzio koordinates saugomos "finder.positions" liste (manau tai pravers darant trynima)
+            ClearWord();
+            LetterGravity();
         }
-        else
-        {
-            data = this.tiles[Random.Range(6, 25)]; // priebalses yra siame intervale
-            wasVowel = false;
-        }
+
+        int index = WordLetters.GetWordLetter();
+        TileData data = this.tiles[index];
 
         this.activePiece.Initialize(this, this.spawnPosition, data);
         Set(this.activePiece);
+    }
+
+    //funkcija skirta istrinti zodi, kuri rado finder objektas
+    public void ClearWord()
+    {   
+        for(int i = 0; i < finder.positions.Count; i++)
+        {
+            this.tilemap.SetTile(finder.positions[i], null);
+        }
+    }
+
+    //funkcija kuri padaro, kad nukristu raides, po kuriu buvo istrintas zodis
+    public void LetterGravity()
+    {    
+        for(int i = 0; i < finder.positions.Count; i++)
+        {
+            Vector3Int tileposition = finder.positions[i];
+            Vector3Int above = tileposition;
+            above.y += 1;
+            //checkinam ar virs esamo tile nera bloko
+            if(tilemap.HasTile(above))
+            {
+                var position = tileposition;
+                //ziurim visus virsutinius tile ir paslenkam per viena
+                while(tilemap.HasTile(above))
+                {
+                    var tile = tilemap.GetTile(above);
+                    tilemap.SetTile(position, tile);
+                    tilemap.SetTile(above, null);
+                    above.y += 1;
+                    position.y += 1;
+                }
+            }
+        }
     }
 
     //funkcija kuri paima ir atspawnina ant mapo nurodyta kaladele
@@ -108,3 +153,4 @@ public class Board : MonoBehaviour
         return true;
     }
 }
+
