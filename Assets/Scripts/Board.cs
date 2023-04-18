@@ -63,6 +63,7 @@ public class Board : MonoBehaviour
         {
             // pagal koordinates istrinam zodi ir vykdom kaladeliu perstumimus
             // trinamo zodzio koordinates saugomos "finder.positions" liste (manau tai pravers darant trynima)
+            ClearWord();
         }
 
         int index = WordLetters.GetWordLetter();
@@ -70,6 +71,15 @@ public class Board : MonoBehaviour
 
         this.activePiece.Initialize(this, this.spawnPosition, data);
         Set(this.activePiece);
+    }
+
+    //funkcija skirta istrinti zodi, kuri rado finder objektas
+    public void ClearWord()
+    {   
+        for(int i = 0; i < finder.positions.Count; i++)
+        {
+            this.tilemap.SetTile(finder.positions[i], null);
+        }
     }
 
     //funkcija kuri paima ir atspawnina ant mapo nurodyta kaladele
