@@ -68,7 +68,7 @@ public class Board : MonoBehaviour
             LetterGravity();
         }
 
-        int index = WordLetters.GetWordLetter();
+        int index = WordLetters.GetEndlessLetter();
         TileData data = this.tiles[index];
 
         this.activePiece.Initialize(this, this.spawnPosition, data);
