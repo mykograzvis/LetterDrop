@@ -14,6 +14,8 @@ public class Printer
     public List<char> letters = new List<char>();
     //number of letters
     public int LetterCount;
+    //paskutine raide balse
+    public bool vowel;
 
     //basic konstruktorius priskirt reiksmes
     public Printer()
@@ -21,6 +23,7 @@ public class Printer
         //nzn galesim is failo ar kokias eilutes skaityt jei lygiams darysim  ir taip zodzius pasirinksim kolkas fixed masyvas.
         words = new List<string> { "dog", "cat", "bike" };
         LetterCount = -1;
+        vowel = false;
     }
 
     //jei leter masyvas tuscias vel visu zodziu raidessusideda i masyva letters
@@ -33,7 +36,6 @@ public class Printer
                 LetterCount++;
                 letters.Add(word[j]);
             }
-            Debug.Log("Count: "  + LetterCount);
         }
     }
 
@@ -46,8 +48,22 @@ public class Printer
          int index = char.ToUpper(c) - 'A';
          letters.RemoveAt(number);
          LetterCount--;
-         // wasVowel = "aeiouAEIOU".IndexOf(c) >= 0;
 
          return index;
+    }
+
+    //metodas endless mode kur raides pagal sansa anglu kalboj spawnina
+    public int GetEndlessLetter()
+    {
+        double sum = Random.Range(1, 510);
+        int rez = -1;
+        List<double> letterNr = new List<double> { 43.31, 10.56, 23.13, 17.25, 56.88, 9.24, 12.59, 15.31, 38.45, 1, 5.61, 27.98, 15.36, 33.92, 36.51, 16.14, 1, 38.64, 29.23, 35.43, 18.51, 5.13, 6.57, 1.57, 9.34, 1.34 };
+        List<int> vowels = new List<int> {0, 4, 8, 14, 20, 24};
+        while(sum >= 0.01)
+        {
+            rez++;
+            sum = sum-letterNr.ElementAt(rez);
+        }
+        return rez;
     }
 }
