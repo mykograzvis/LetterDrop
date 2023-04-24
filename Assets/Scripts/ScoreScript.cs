@@ -7,7 +7,7 @@ using TMPro;
 
 public class ScoreScript : MonoBehaviour
 {
-    public static int scoreValue;
+    public static double scoreValue;
     public TMP_Text scoreText;
 
     // Start is called before the first frame update
