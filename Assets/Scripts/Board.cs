@@ -78,7 +78,8 @@ public class Board : MonoBehaviour
     //funkcija skirta istrinti zodi, kuri rado finder objektas
     public void ClearWord()
     {
-        scoreSoundEffect.Play();
+        //scoreSoundEffect.Play();
+	AudioManager.Instance.PlaySFX("Isnykimas");
         for (int i = 0; i < finder.positions.Count; i++)
         {
             this.tilemap.SetTile(finder.positions[i], null);
