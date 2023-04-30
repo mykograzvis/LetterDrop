@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
+using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
@@ -66,6 +68,13 @@ public class Board : MonoBehaviour
             // trinamo zodzio koordinates saugomos "finder.positions" liste (manau tai pravers darant trynima)
             ClearWord();
             LetterGravity();
+            ScoreScript.scoreValue += (100 * Math.Pow(1.5, word.Length - 3));
+            FoundWord.AddWord(word);
+        }
+
+        if(tilemap.HasTile(spawnPosition))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
 
         int index = WordLetters.GetEndlessLetter();
@@ -78,7 +87,8 @@ public class Board : MonoBehaviour
     //funkcija skirta istrinti zodi, kuri rado finder objektas
     public void ClearWord()
     {
-        scoreSoundEffect.Play();
+        //scoreSoundEffect.Play();
+	    AudioManager.Instance.PlaySFX("Isnykimas");
         for (int i = 0; i < finder.positions.Count; i++)
         {
             this.tilemap.SetTile(finder.positions[i], null);
