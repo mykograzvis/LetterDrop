@@ -80,7 +80,12 @@ public class Board : MonoBehaviour
             // trinamo zodzio koordinates saugomos "finder.positions" liste (manau tai pravers darant trynima)
             ClearWord();
             LetterGravity();
-            ScoreScript.scoreValue += (100 * Math.Pow(1.5, word.Length - 3));
+            int value = 100;
+            if (word.Contains('h') || word.Contains('g') || word.Contains('b') || word.Contains('f') || word.Contains('y') || word.Contains('w') || word.Contains('k'))
+                value += 50;
+            if (word.Contains('v') || word.Contains('x') || word.Contains('z') || word.Contains('j') || word.Contains('q'))
+                value += 75;
+            ScoreScript.scoreValue += (value * Math.Pow(1.5, word.Length - 3));
             FoundWord.AddWord(word);
 
             if (isLevel) // patikrinam ar level tipo sesija, jei taip, tikrinam objectives
