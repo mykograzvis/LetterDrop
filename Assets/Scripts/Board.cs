@@ -108,6 +108,14 @@ public class Board : MonoBehaviour
         {
             this.tilemap.SetTile(finder.positions[i], null);
         }
+        if (isLevel) // patikrinam ar level tipo sesija,
+        {
+            this.activePiece.SpeedUpLVL();
+        }
+        else
+        {
+            this.activePiece.SpeedUp();
+        }
     }
 
     //funkcija kuri padaro, kad nukristu raides, po kuriu buvo istrintas zodis
