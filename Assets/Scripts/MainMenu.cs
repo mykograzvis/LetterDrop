@@ -7,9 +7,12 @@ public class MainMenu : MonoBehaviour
 {
    public void Play()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("EndlessScene");
     }
-
+    public void PlayLevel()
+    {
+        SceneManager.LoadScene("LevelScene");
+    }
     public void Quit()
     {
         Application.Quit();

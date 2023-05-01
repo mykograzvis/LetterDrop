@@ -6,6 +6,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using static Level;
 
 public class Board : MonoBehaviour
 {
@@ -24,6 +25,10 @@ public class Board : MonoBehaviour
     public Printer WordLetters = new Printer();
     // Tikrins ar boarde yra sudetu zodziu
     public WordFind finder;
+    // Saugos, ar zaidziama level tipo sesija
+    public bool isLevel = false;
+    // level kintamasis
+    public Level level { get; private set; }
     //apsibreziam boardo ribas kordinatemis zaidimo
     public RectInt Bounds
     {
@@ -49,6 +54,12 @@ public class Board : MonoBehaviour
 
         finder = new WordFind();
         finder.Create(tilemap); // Sukuriamas zodynas (reik sukurt tik viena kart)
+
+        if (isLevel) // patikrinam ar level tipo sesija, jei taip, vaizduojam uzduotys (objectives)
+        {
+            level = new Level();
+            level.Initialize();
+        }
     }
 
     //game start ka daryt
@@ -60,6 +71,7 @@ public class Board : MonoBehaviour
     //ant lentos ima ir atspawnina kaladele
     public void SpawnPiece()
     {
+        
         // pries atspawninant kaladele, tikrinam ar yra sudarytas zodis. Jei taip, reikia ji istrinti
         string word = finder.FindWord();
         if (word != "") // rastas zodis
@@ -70,11 +82,14 @@ public class Board : MonoBehaviour
             LetterGravity();
             ScoreScript.scoreValue += (100 * Math.Pow(1.5, word.Length - 3));
             FoundWord.AddWord(word);
+
+            if (isLevel) // patikrinam ar level tipo sesija, jei taip, tikrinam objectives
+                level.UpdateObjectives(word.Length);
         }
 
         if(tilemap.HasTile(spawnPosition))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            SceneManager.LoadScene("MainMenu");
         }
 
         int index = WordLetters.GetEndlessLetter();
