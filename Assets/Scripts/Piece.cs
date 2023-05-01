@@ -8,11 +8,12 @@ public class Piece : MonoBehaviour
     public Vector3Int position { get; private set; }
     public Vector3Int[] cells { get; private set; }
 
-    public float stepDelay = 0.5f;
-    public float lockDelay = 0.5f;
+    public float stepDelay;
+    public float lockDelay;
 
     private float stepTime;
     private float lockTime;
+    private float speedTime;
 
     public void Initialize(Board board, Vector3Int position, TileData data)
     {
@@ -33,10 +34,35 @@ public class Piece : MonoBehaviour
         }
     }
 
+    public void SpeedUp()
+    {
+        this.stepDelay = this.stepDelay*0.97f;
+        this.lockDelay = this.lockDelay*0.97f;
+        Debug.Log("speedUp: " + stepDelay);
+    }
+
+    public void SpeedUpLVL()
+    {
+        this.stepDelay = this.stepDelay*0.9f;
+        this.lockDelay = this.lockDelay*0.9f;
+        Debug.Log("speedUp: " + stepDelay);
+    }
+
     //paupdatinam kordinates positiono
     private void Update()
     {
         this.board.Clear(this);
+        if(this.speedTime == 0)
+        {
+            this.speedTime = Time.time + 30f;
+        }
+        else if(this.speedTime <= Time.time)
+        {
+            this.speedTime = Time.time + 30f;
+            this.stepDelay = this.stepDelay*0.9f;
+            this.lockDelay = this.lockDelay*0.9f;
+            Debug.Log("speedUp: " + stepDelay);
+        }
 
         this.lockTime += Time.deltaTime;
         //judejimas i sonus
