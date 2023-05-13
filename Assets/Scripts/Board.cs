@@ -10,6 +10,7 @@ using static Level;
 
 public class Board : MonoBehaviour
 {
+    public GameObject gameover;
     [SerializeField] private AudioSource scoreSoundEffect;
     //kaladeliu masyvas
     public TileData[] tiles;
@@ -94,7 +95,8 @@ public class Board : MonoBehaviour
 
         if(tilemap.HasTile(spawnPosition))
         {
-            SceneManager.LoadScene("MainMenu");
+            //SceneManager.LoadScene("MainMenu");
+            gameover.SetActive(true);
         }
 
         int index = WordLetters.GetEndlessLetter();
