@@ -64,7 +64,9 @@ public class Level : MonoBehaviour
                     
                 }
         if (objectives.Count == 0) // visos uzduotys ivykdytos, game over
-            SceneManager.LoadScene("MainMenu");
+        {
+            SceneManager.LoadScene("Win");
+        }
     }
 }
 
