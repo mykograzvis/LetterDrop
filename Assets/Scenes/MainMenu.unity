@@ -782,6 +782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelValues: {fileID: 11400000, guid: 84d8b674cc9106d4fab0e3d815dc6073, type: 2}
+  levelText: {fileID: 0}
 --- !u!1 &366334838
 GameObject:
   m_ObjectHideFlags: 0
@@ -2696,6 +2697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelValues: {fileID: 11400000, guid: 89bb7b3c8d324fb409dad65eb2024565, type: 2}
+  levelText: {fileID: 0}
 --- !u!114 &1428486156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2829,7 +2831,7 @@ RectTransform:
   m_GameObject: {fileID: 1515626711}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0375, y: 1.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 619088342}
@@ -3008,6 +3010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelValues: {fileID: 11400000, guid: 9cbcc1487718e5e47b19bcdd1e7e68a6, type: 2}
+  levelText: {fileID: 0}
 --- !u!114 &1538807735
 MonoBehaviour:
   m_ObjectHideFlags: 0

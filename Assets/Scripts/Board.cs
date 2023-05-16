@@ -10,6 +10,7 @@ using static Level;
 
 public class Board : MonoBehaviour
 {
+    public GameObject gameover;
     [SerializeField] private AudioSource scoreSoundEffect;
     //kaladeliu masyvas
     public TileData[] tiles;
@@ -80,7 +81,12 @@ public class Board : MonoBehaviour
             // trinamo zodzio koordinates saugomos "finder.positions" liste (manau tai pravers darant trynima)
             ClearWord();
             LetterGravity();
-            ScoreScript.scoreValue += (100 * Math.Pow(1.5, word.Length - 3));
+            int value = 100;
+            if (word.Contains('h') || word.Contains('g') || word.Contains('b') || word.Contains('f') || word.Contains('y') || word.Contains('w') || word.Contains('k'))
+                value += 50;
+            if (word.Contains('v') || word.Contains('x') || word.Contains('z') || word.Contains('j') || word.Contains('q'))
+                value += 75;
+            ScoreScript.scoreValue += (value * Math.Pow(1.5, word.Length - 3));
             FoundWord.AddWord(word);
 
             if (isLevel) // patikrinam ar level tipo sesija, jei taip, tikrinam objectives
@@ -89,7 +95,8 @@ public class Board : MonoBehaviour
 
         if(tilemap.HasTile(spawnPosition))
         {
-            SceneManager.LoadScene("MainMenu");
+            //SceneManager.LoadScene("MainMenu");
+            gameover.SetActive(true);
         }
 
         int index = WordLetters.GetEndlessLetter();
@@ -107,6 +114,14 @@ public class Board : MonoBehaviour
         for (int i = 0; i < finder.positions.Count; i++)
         {
             this.tilemap.SetTile(finder.positions[i], null);
+        }
+        if (isLevel) // patikrinam ar level tipo sesija,
+        {
+            this.activePiece.SpeedUpLVL();
+        }
+        else
+        {
+            this.activePiece.SpeedUp();
         }
     }
 
