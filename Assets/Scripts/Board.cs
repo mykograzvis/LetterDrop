@@ -75,7 +75,7 @@ public class Board : MonoBehaviour
         
         // pries atspawninant kaladele, tikrinam ar yra sudarytas zodis. Jei taip, reikia ji istrinti
         string word = finder.FindWord();
-        if (word != "") // rastas zodis
+        while (word != "") // rastas zodis
         {
             // pagal koordinates istrinam zodi ir vykdom kaladeliu perstumimus
             // trinamo zodzio koordinates saugomos "finder.positions" liste (manau tai pravers darant trynima)
@@ -91,6 +91,7 @@ public class Board : MonoBehaviour
 
             if (isLevel) // patikrinam ar level tipo sesija, jei taip, tikrinam objectives
                 level.UpdateObjectives(word.Length);
+            word = finder.FindWord(); // Patikrinam is naudo nes po letter gravity galimai susidare naujas zodis
         }
 
         if(tilemap.HasTile(spawnPosition))
